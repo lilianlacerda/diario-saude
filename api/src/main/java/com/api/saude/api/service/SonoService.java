@@ -25,15 +25,19 @@ public class SonoService {
         return listarSono();
     }
 
+    public Sono buscarSonoPorId(Long id){
+        return sonoRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Sono não encontrado com o ID: " + id));
+    }
+
     public Sono atualizarSono(Long id, Sono sonoAtualizado){
-        Sono sono = sonoRepository.findById(id)
-                    .orElseThrow(() -> new RuntimeException("Sono não encontrado com o ID: " + id));
+        Sono sonoExistente = buscarSonoPorId(id);
 
-        sono.setHorasDormidas(sonoAtualizado.getHorasDormidas());
-        sono.setQualidadeSono(sonoAtualizado.getQualidadeSono());
-        sono.setDataRegistro(sonoAtualizado.getDataRegistro());
+        sonoExistente.setHorasDormidas(sonoAtualizado.getHorasDormidas());
+        sonoExistente.setQualidadeSono(sonoAtualizado.getQualidadeSono());
+        sonoExistente.setDataRegistro(sonoAtualizado.getDataRegistro());
 
-        return sonoRepository.save(sono);
+        return sonoRepository.save(sonoExistente);
     }
 
     public String deletarSono(Long id){
@@ -41,6 +45,6 @@ public class SonoService {
             return "Sono não encontrado com o ID: " + id;
         }
         sonoRepository.deleteById(id);
-        return "Sono deletado com sucesso!" + listarSono();
+        return "Sono deletado com sucesso!";
     }
 }

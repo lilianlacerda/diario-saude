@@ -1,21 +1,17 @@
 package com.api.saude.api.controller;
 
-import java.util.List;
-
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 import com.api.saude.api.entity.Sono;
 import com.api.saude.api.service.SonoService;
 
-@RestController
+@Controller
 @RequestMapping("/sono")
 public class SonoController {
     private final SonoService sonoService;
@@ -25,27 +21,41 @@ public class SonoController {
     }
 
     @GetMapping("/listar")
-    public ResponseEntity<List<Sono>> listarSono(){
-        List<Sono> sonos = sonoService.listarSono();
-        return ResponseEntity.ok().body(sonos);
+    public String listarSono(Model model){
+        model.addAttribute("sonos", sonoService.listarSono());
+        model.addAttribute("sono", new Sono());
+        return "sono/sono";
+    }
+
+    @GetMapping("/cadastrar")
+    public String mostrarCadastro(){
+        return "sono/cadastrar";
     }
 
     @PostMapping("/cadastrar")
-    public ResponseEntity<List<Sono>> cadastrarSono(@RequestBody Sono sono){
-        List<Sono> sonoNovo = sonoService.cadastrarSono(sono);
-        return ResponseEntity.ok().body(sonoNovo);
+    public String cadastrarSono(@ModelAttribute Sono sono){
+        sonoService.cadastrarSono(sono);
+        return "redirect:/sono/listar";
     }
 
-    @PutMapping("/editar/{id}")
-    public ResponseEntity<Sono> editarSono(@PathVariable Long id, @RequestBody Sono sono){
-        sonoService.atualizarSono(id, sono);
-        return ResponseEntity.ok().body(sono);
+    //Como quero usar HTML puro por enquanto. Não usarei Put e Delete nas requisições. 
+    @GetMapping("/editar/{id}")
+    public String editarSono(@PathVariable Long id, Model model){
+        Sono sono = sonoService.buscarSonoPorId(id);
+        model.addAttribute("sono", sono);
+        return "sono/sono";
     }
 
-    @DeleteMapping("/deletar/{id}")
-    public ResponseEntity<Void> excluirSono(@PathVariable Long id){
+    @PostMapping("/editar/{id}")
+    public String atualizarSono(@PathVariable Long id, @ModelAttribute Sono sonoAtualizado){
+        sonoService.atualizarSono(id, sonoAtualizado);
+        return "redirect:/sono/sono";
+    }
+
+    @GetMapping("/deletar/{id}")
+    public String excluirSono(@PathVariable Long id){
         sonoService.deletarSono(id);
-        return ResponseEntity.noContent().build();
+        return "redirect:/sono/sono";
     }
     
 }
