@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" 
+                    layout:decorate="~{layouts/main_layout.html}">
+<head>
+    
+</head>
+<body>
+    <main class="container py-5" layout:fragment="content">
+        <div>
+            <h1 class="text-center">Meu sono Diário</h1>
+            <a href="/sono/cadastrar"><button type="button" class="btn btn-lg btn-outline-success">Adicionar</button></a>
+        </div>
+        <section>
+            <table class="table table-secondary table-striped table-hover table-bordered mt-4 text-center">
+                <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Data</th>
+                        <th scope="col">Quantidade de Horas</th>
+                        <th scope="col">Qualidade</th>
+                        <th scope="col">Ações</th>
+                    </tr>
+                </thead>
+                <tbody class="table-group-divider">
+                    <tr scope="row" th:each="sono : ${sonos}">
+                        <td th:text="${sono.id}"></td>
+                        <td th:text="${sono.dataRegistro}"></td>
+                        <td th:text="${sono.horasDormidas}"></td>
+                        <td th:text="${sono.qualidadeSono}"></td>
+                        <td>
+                            <a th:href="@{/sono/editar/{id}(id=${sono.id})}"><button type="button" class="btn btn-outline-primary">Editar</button></a>
+                            <a th:href="@{/sono/deletar/{id}(id=${sono.id})}" onclick="return confirm('Tem certeza que deseja excluir esse registro?');"><button type="button" class="btn btn-outline-danger">Excluir</button></a>
+                        </td>
+
+                    </tr>
+                </tbody>
+            </table>
+
+        </section>
+    </main>
+    
+</body>
+</html>

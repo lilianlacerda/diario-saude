@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{layouts/main_layout.html}">
+
+<head>
+
+</head>
+
+<body>
+    <main class="container" layout:fragment="content">
+        <section>
+            <div>
+                <h1 class="text-center mt-5">Você dormiu bem?</h1>
+                <form method="POST" action="/sono/cadastrar" class="mt-4">
+                    <div class="mb-3">
+                        <label for="horasDormidas" class="form-label fs-4">Horas dormidas</label>
+                        <input type="number" class="form-control" name="horasDormidas">
+                    </div>
+                    <div class="mb-3">
+                        <label for="qualidadeSono" class="form-label fs-4">Qualidade do Sono</label>
+                        <input type="text" class="form-control" name="qualidadeSono">
+                    </div>
+                    <div class="mb-3">
+                        <label for="dataRegistro" class="form-label fs-4">Data do Sono</label>
+                        <input type="date" class="form-control" name="dataRegistro">
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Cadastrar sono</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+</body>
+
+</html>
