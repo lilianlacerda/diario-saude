@@ -7,10 +7,30 @@
 </head>
 
 <body>
-    <div class="container" layout:fragment="content">
-        <h1>Início</h1>
-        <p>Bem vindo ao nosso site!</p>
-    </div>
+    <main class="container" layout:fragment="content">
+        <section>
+            <div>
+                <h1 class="text-center mt-5">Você dormiu bem?</h1>
+                <form method="POST" th:action="@{/sono/editar/{id}(id=${sono.id})}" class="mt-4">
+                    <div class="mb-3">
+                        <label for="horasDormidas" class="form-label fs-4">Horas dormidas</label>
+                        <input type="number" class="form-control" name="horasDormidas" id="horasDormidas" th:name="horasDormidas" th:field="${sono.horasDormidas}">
+                    </div>
+                    <div class="mb-3">
+                        <label for="qualidadeSono" class="form-label fs-4">Qualidade do Sono</label>
+                        <input type="text" class="form-control" name="qualidadeSono" id="qualidadeSono" th:name="qualidadeSono" th:field="${sono.qualidadeSono}">
+                    </div>
+                    <div class="mb-3">
+                        <label for="dataRegistro" class="form-label fs-4">Data do Sono</label>
+                        <input type="date" class="form-control" name="dataRegistro" id="dataRegistro" th:name="dataRegistro"\ th:field="*{sono.dataRegistro}">
+                    </div>
+
+                    <input type="hidden" th:field="${sono.id}">
+                    <button type="submit" class="btn btn-primary">Cadastrar sono</button>
+                </form>
+            </div>
+        </section>
+    </main>
 
 </body>
 

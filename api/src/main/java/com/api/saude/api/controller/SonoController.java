@@ -43,19 +43,19 @@ public class SonoController {
     public String editarSono(@PathVariable Long id, Model model){
         Sono sono = sonoService.buscarSonoPorId(id);
         model.addAttribute("sono", sono);
-        return "sono/sono";
+        return "sono/editar";
     }
 
     @PostMapping("/editar/{id}")
     public String atualizarSono(@PathVariable Long id, @ModelAttribute Sono sonoAtualizado){
         sonoService.atualizarSono(id, sonoAtualizado);
-        return "redirect:/sono/sono";
+        return "redirect:/sono/listar";
     }
 
     @GetMapping("/deletar/{id}")
     public String excluirSono(@PathVariable Long id){
         sonoService.deletarSono(id);
-        return "redirect:/sono/sono";
+        return "redirect:/sono/listar";
     }
     
 }
