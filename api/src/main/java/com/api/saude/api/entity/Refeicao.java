@@ -2,6 +2,8 @@ package com.api.saude.api.entity;
 
 import java.time.LocalDate;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -19,6 +21,7 @@ public class Refeicao {
     private String nome;
     private String tipo;
     private Double quantidade;
-    private LocalDate data;
+    @DateTimeFormat(pattern = "yyy-MM-dd")
+    private LocalDate dataRegistro;
     
 }
