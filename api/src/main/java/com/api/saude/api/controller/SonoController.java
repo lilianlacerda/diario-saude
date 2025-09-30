@@ -23,12 +23,12 @@ public class SonoController {
     @GetMapping("/listar")
     public String listarSono(Model model){
         model.addAttribute("sonos", sonoService.listarSono());
-        model.addAttribute("sono", new Sono());
         return "sono/sono";
     }
 
     @GetMapping("/cadastrar")
-    public String mostrarCadastro(){
+    public String mostrarCadastro(Model model){
+        model.addAttribute("sono", new Sono());
         return "sono/cadastrar";
     }
 
