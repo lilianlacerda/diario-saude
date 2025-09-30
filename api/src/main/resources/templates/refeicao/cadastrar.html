@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{layouts/main_layout.html}">
+
+<head>
+
+</head>
+
+<body>
+    <main class="container" layout:fragment="content">
+        <section>
+            <div>
+                <h1 class="text-center mt-5">O que Você Comeu?</h1>
+                <form method="POST" action="/refeicao/cadastrar" class="mt-4">
+                    <div class="mb-3">
+                        <label for="nome" class="form-label fs-4">Nome da Refeição</label>
+                        <input type="text" class="form-control" name="nome">
+                    </div>
+                    <div class="mb-3">
+                        <label for="tipo" class="form-label fs-4">Tipo da Refeição</label>
+                        <input type="text" class="form-control" name="tipo">
+                    </div>
+                    <div class="mb-3">
+                        <label for="quantidade" class="form-label fs-4">Quantidade da Refeição</label>
+                        <input type="number" step="any" class="form-control" name="quantidade">
+                    </div>
+                    <div class="mb-3">
+                        <label for="dataRegistro" class="form-label fs-4">Data do Sono</label>
+                        <input type="date" class="form-control" name="dataRegistro">
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Cadastrar sono</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+</body>
+
+</html>
