@@ -24,14 +24,19 @@ public class RefeicaoService {
         return listarRefeicao();
     }
 
+    public Refeicao buscarRefeicaoPorId(Long id){
+        return refeicaoRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Refeição não encontrada pelo ID " + id));
+    }
+
     public Refeicao editarRefeicao(Long id, Refeicao refeicaoAtualizada){
-        Refeicao refeicao = refeicaoRepository.findById(id)
-                            .orElseThrow(() -> new RuntimeException("Refeição não encontrada pelo ID " + id));
-        
+
+        Refeicao refeicao = buscarRefeicaoPorId(id);
+
         refeicao.setNome(refeicaoAtualizada.getNome());
         refeicao.setTipo(refeicaoAtualizada.getTipo());
         refeicao.setQuantidade(refeicaoAtualizada.getQuantidade());
-        refeicao.setData(refeicaoAtualizada.getData());
+        refeicao.setDataRegistro(refeicaoAtualizada.getDataRegistro());
         
         return refeicaoRepository.save(refeicao);
     }
