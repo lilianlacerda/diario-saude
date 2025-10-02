@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" 
+                    layout:decorate="~{layouts/main_layout.html}">
+<head>
+
+</head>
+<body>
+    <main class="container py-5" layout:fragment="content">
+        <div>
+            <h1 class="text-center">Minhas Refeições</h1>
+            <a href="/exercicio/cadastrar"><button type="button" class="btn btn-lg btn-outline-success">Adicionar</button></a>
+        </div>
+        <section>
+            <table class="table table-secondary table-striped table-hover table-bordered mt-4 text-center">
+                <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Nome</th>
+                        <th scope="col">Series</th>
+                        <th scope="col">Repetições</th>
+                        <th scope="col">Carga</th>
+                        <th scope="col">Tempo</th>
+                        <th scope="col">Data</th>
+                        <th scope="col">Ações</th>
+                    </tr>
+                </thead>
+                <tbody class="table-group-divider">
+                    <tr scope="row" th:each="exercicio : ${exercicios}">
+                        <td th:text="${exercicio.id}"></td>
+                        <td th:text="${exercicio.nome}"></td>
+                        <td th:text="${exercicio.series}"></td>                        
+                        <td th:text="${exercicio.repeticoes}"></td>                        
+                        <td th:text="${exercicio.carga}"></td>                        
+                        <td th:text="${exercicio.tempo}"></td>
+                        <td th:text="${exercicio.dataRegistro}"></td>
+                        <td>
+                            <a th:href="@{/exercicio/editar/{id}(id=${exercicio.id})}"><button type="button" class="btn btn-outline-primary">Editar</button></a>
+                            <a th:href="@{/exercicio/deletar/{id}(id=${exercicio.id})}" onclick="return confirm('Tem certeza que deseja excluir esse registro?');"><button type="button" class="btn btn-outline-danger">Excluir</button></a>
+                        </td>
+
+                    </tr>
+                </tbody>
+            </table>
+
+        </section>
+    </main>
+    
+</body>
+</html>
