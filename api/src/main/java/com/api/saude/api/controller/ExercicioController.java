@@ -1,21 +1,17 @@
 package com.api.saude.api.controller;
 
-import java.util.List;
-
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 import com.api.saude.api.entity.Exercicio;
 import com.api.saude.api.service.ExercicioService;
 
-@RestController
+@Controller
 @RequestMapping("/exercicio")
 public class ExercicioController {
 
@@ -26,27 +22,41 @@ public class ExercicioController {
     }
 
     @GetMapping("/listar")
-    public ResponseEntity<List<Exercicio>> listarEcercicios(){
-        List<Exercicio> exercicios = exercicioService.listarExercicios();
-        return ResponseEntity.ok().body(exercicios);
+    public String listarEcercicios(Model model){
+        model.addAttribute("exercicios", exercicioService.listarExercicios());
+        return "exercicio/exercicio";
+    }
+
+    @GetMapping("/cadastrar")
+    public String mostrarCadastro(Model model){
+        model.addAttribute("exercicio", new Exercicio());
+        return "exercicio/cadastrar";
+
     }
 
     @PostMapping("/cadastrar")
-    public ResponseEntity<List<Exercicio>> cadastrarExercicio(@RequestBody Exercicio exercicio){
-        List<Exercicio> exercicioNovo = exercicioService.criarExercicio(exercicio);
-        return ResponseEntity.ok().body(exercicioNovo);
+    public String cadastrarExercicio(@ModelAttribute Exercicio exercicio){
+        exercicioService.criarExercicio(exercicio);
+        return "redirect:/exercicio/listar";
     }
 
-    @PutMapping("/editar/{id}")
-    public ResponseEntity<Exercicio> editarExercicio(@PathVariable Long id, @RequestBody Exercicio exercicio){
-        exercicioService.editarExercicio(id, exercicio);
-        return ResponseEntity.ok().body(exercicio);
+    @GetMapping("/editar/{id}")
+    public String mostrarEdicao(@PathVariable Long id, Model model){
+        Exercicio exercicio = exercicioService.buscarExercicioPorId(id);
+        model.addAttribute("exercicio", exercicio);
+        return "exercicio/editar";
     }
 
-    @DeleteMapping("/deletar/{id}")
-    public ResponseEntity<Void> deletarExercicio(@PathVariable Long id){
+    @PostMapping("/editar/{id}")
+    public String editarExercicio(@PathVariable Long id, @ModelAttribute Exercicio exercicioAtualizado){
+        exercicioService.editarExercicio(id, exercicioAtualizado);
+        return "redirect:/exercicio/listar";
+    }
+
+    @GetMapping("/deletar/{id}")
+    public String deletarExercicio(@PathVariable Long id){
         exercicioService.excluirExercicio(id);
-        return ResponseEntity.noContent().build();
+        return "redirect:/exercicio/listar";
     }
     
 }
