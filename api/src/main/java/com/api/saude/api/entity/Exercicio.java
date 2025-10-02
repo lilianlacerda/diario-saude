@@ -2,6 +2,8 @@ package com.api.saude.api.entity;
 
 import java.time.LocalDate;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -16,10 +18,12 @@ public class Exercicio {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private LocalDate data;
     private String nome;
     private Integer series;
     private Integer repeticoes;
     private Double carga;
     private Double tempo;
+
+    @DateTimeFormat(pattern = "yyy-MM-dd")
+    private LocalDate dataRegistro;
 }
