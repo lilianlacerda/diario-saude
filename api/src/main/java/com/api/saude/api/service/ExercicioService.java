@@ -25,17 +25,22 @@ public class ExercicioService {
         return listarExercicios();
     }
 
+    public Exercicio buscarExercicioPorId(Long id){
+        return exercicioRepository.findById(id)
+            .orElseThrow(() -> new RuntimeException("Não foi encontrado nenhum exercicio com esse ID" + id));
+    }
+
     public Exercicio editarExercicio(Long id, Exercicio exercicioAtual){
-        Exercicio exercicio = exercicioRepository.findById(id)
-                            .orElseThrow(() -> new RuntimeException("Não foi encontrado nenhum exercicio com esse ID" + id));
-        exercicio.setNome(exercicioAtual.getNome());
-        exercicio.setData(exercicioAtual.getData());
-        exercicio.setSeries(exercicioAtual.getSeries());
-        exercicio.setRepeticoes(exercicioAtual.getRepeticoes());
-        exercicio.setCarga(exercicioAtual.getCarga());
-        exercicio.setTempo(exercicioAtual.getTempo());
+        Exercicio exercicioExistente = buscarExercicioPorId(id);
         
-        return exercicioRepository.save(exercicio);
+        exercicioExistente.setNome(exercicioAtual.getNome());
+        exercicioExistente.setDataRegistro(exercicioAtual.getDataRegistro());
+        exercicioExistente.setSeries(exercicioAtual.getSeries());
+        exercicioExistente.setRepeticoes(exercicioAtual.getRepeticoes());
+        exercicioExistente.setCarga(exercicioAtual.getCarga());
+        exercicioExistente.setTempo(exercicioAtual.getTempo());
+        
+        return exercicioRepository.save(exercicioExistente);
     }
 
     public String excluirExercicio(Long id){
