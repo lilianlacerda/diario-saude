@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{layouts/main_layout.html}">
+
+<head></head>
+
+<body>
+    <main class="container" layout:fragment="content">
+        <section>
+            <div>
+                <h1 class="text-center mt-5">O que Você Comeu?</h1>
+                <form method="POST" action="/exercicio/cadastrar" class="mt-4">
+                    <div class="mb-3">
+                        <label for="nome" class="form-label fs-4">Nome do Exercício</label>
+                        <input type="text" class="form-control" name="nome">
+                    </div>
+                    <div class="mb-3">
+                        <label for="series" class="form-label fs-4">Série do Exercício</label>
+                        <input type="number" class="form-control" name="series">
+                    </div>
+                    <div class="mb-3">
+                        <label for="repeticoes" class="form-label fs-4">Repetições do Exercício</label>
+                        <input type="number" class="form-control" name="repeticoes">
+                    </div>
+                    <div class="mb-3">
+                        <label for="carga" class="form-label fs-4">Carga do Exercício</label>
+                        <input type="number" step="any" class="form-control" name="carga">
+                    </div>
+                    <div class="mb-3">
+                        <label for="tempo" class="form-label fs-4">Tempo do Exercício</label>
+                        <input type="number" step="any" class="form-control" name="tempo">
+                    </div>
+                    <div class="mb-3">
+                        <label for="dataRegistro" class="form-label fs-4">Data do Exercício</label>
+                        <input type="date" class="form-control" name="dataRegistro">
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Cadastrar Exercício</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+</body>
+
+</html>
