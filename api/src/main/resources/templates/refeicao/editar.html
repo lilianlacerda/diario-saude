@@ -13,20 +13,20 @@
                 <h1 class="text-center mt-5">O que você comeu?</h1>
                 <form method="POST" th:action="@{/refeicao/editar/{id}(id=${refeicao.id})}" class="mt-4">
                     <div class="mb-3">
-                        <label for="nome" class="form-label fs-4">Nome da Refeição</label>
-                        <input type="text" class="form-control" name="nome" id="nome" th:name="nome" th:field="${refeicao.nome}">
-                    </div>
-                    <div class="mb-3">
                         <label for="tipo" class="form-label fs-4">Tipo da Refeição</label>
-                        <input type="text" class="form-control" name="tipo" id="tipo" th:name="tipo" th:field="${refeicao.tipo}">
+                        <input type="text" class="form-control" name="tipo" id="tipo" th:name="tipo" th:field="${refeicao.tipo}" required>
                     </div>
                     <div class="mb-3">
-                        <label for="quantidade" class="form-label fs-4">Quantidade da Refeição</label>
-                        <input type="number" step="any" class="form-control" name="quantidade" id="quantidade" th:name="quantidade" th:field="${refeicao.quantidade}">
+                        <label for="descricao" class="form-label fs-4">Descrição da Refeição</label>
+                        <input type="text" class="form-control" name="descricao" id="descricao" th:name="descricao" th:field="${refeicao.descricao}" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="calorias" class="form-label fs-4">Calorias da Refeição</label>
+                        <input type="number" step="any" class="form-control" name="calorias" id="calorias" th:name="calorias" th:field="${refeicao.calorias}" required>
                     </div>
                     <div class="mb-3">
                         <label for="dataRegistro" class="form-label fs-4">Data da Refeição</label>
-                        <input type="date" class="form-control" name="dataRegistro" id="dataRegistro" th:name="dataRegistro"\ th:field="${refeicao.dataRegistro}">
+                        <input type="date" class="form-control" name="dataRegistro" id="dataRegistro" th:name="dataRegistro"\ th:field="${refeicao.dataRegistro}" required>
                     </div>
 
                     <input type="hidden" th:field="${refeicao.id}">

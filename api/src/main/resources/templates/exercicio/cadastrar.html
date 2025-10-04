@@ -12,27 +12,27 @@
                 <form method="POST" action="/exercicio/cadastrar" class="mt-4">
                     <div class="mb-3">
                         <label for="nome" class="form-label fs-4">Nome do Exercício</label>
-                        <input type="text" class="form-control" name="nome">
+                        <input type="text" class="form-control" name="nome" required>
                     </div>
                     <div class="mb-3">
                         <label for="series" class="form-label fs-4">Série do Exercício</label>
-                        <input type="number" class="form-control" name="series">
+                        <input type="number" class="form-control" name="series" required>
                     </div>
                     <div class="mb-3">
                         <label for="repeticoes" class="form-label fs-4">Repetições do Exercício</label>
-                        <input type="number" class="form-control" name="repeticoes">
+                        <input type="number" class="form-control" name="repeticoes" required>
                     </div>
                     <div class="mb-3">
                         <label for="carga" class="form-label fs-4">Carga do Exercício</label>
-                        <input type="number" step="any" class="form-control" name="carga">
+                        <input type="number" step="any" class="form-control" name="carga" required>
                     </div>
                     <div class="mb-3">
                         <label for="tempo" class="form-label fs-4">Tempo do Exercício</label>
-                        <input type="number" step="any" class="form-control" name="tempo">
+                        <input type="number" step="any" class="form-control" name="tempo" required>
                     </div>
                     <div class="mb-3">
                         <label for="dataRegistro" class="form-label fs-4">Data do Exercício</label>
-                        <input type="date" class="form-control" name="dataRegistro">
+                        <input type="date" class="form-control" name="dataRegistro" required>
                     </div>
 
                     <button type="submit" class="btn btn-primary">Cadastrar Exercício</button>

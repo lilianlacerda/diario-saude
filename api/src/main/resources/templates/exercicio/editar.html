@@ -20,19 +20,19 @@
                     </div>
                     <div class="mb-3">
                         <label for="repeticoes" class="form-label fs-4">Repetições do Exercício</label>
-                        <input type="number" class="form-control" name="repeticoes" id="repeticoes" th:name="repeticoes" th:field="${exercicio.repeticoes}">
+                        <input type="number" class="form-control" name="repeticoes" id="repeticoes" th:name="repeticoes" th:field="${exercicio.repeticoes}" required>
                     </div>
                     <div class="mb-3">
                         <label for="carga" class="form-label fs-4">Carga do Exercício</label>
-                        <input type="number" step="any" class="form-control" name="carga" id="carga" th:name="carga" th:field="${exercicio.carga}">
+                        <input type="number" step="any" class="form-control" name="carga" id="carga" th:name="carga" th:field="${exercicio.carga}" required>
                     </div>
                     <div class="mb-3">
                         <label for="tempo" class="form-label fs-4">Tempo do Exercício</label>
-                        <input type="number" step="any" class="form-control" name="tempo" id="tempo" th:name="tempo" th:field="${exercicio.tempo}">
+                        <input type="number" step="any" class="form-control" name="tempo" id="tempo" th:name="tempo" th:field="${exercicio.tempo}" required>
                     </div>
                     <div class="mb-3">
                         <label for="dataRegistro" class="form-label fs-4">Data do Exercício</label>
-                        <input type="date" class="form-control" name="dataRegistro" id="dataRegistro" th:name="dataRegistro"\ th:field="${exercicio.dataRegistro}">
+                        <input type="date" class="form-control" name="dataRegistro" id="dataRegistro" th:name="dataRegistro"\ th:field="${exercicio.dataRegistro}" required>
                     </div>
 
                     <input type="hidden" th:field="${exercicio.id}">

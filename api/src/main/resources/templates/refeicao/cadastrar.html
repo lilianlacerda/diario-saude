@@ -13,20 +13,20 @@
                 <h1 class="text-center mt-5">O que Você Comeu?</h1>
                 <form method="POST" action="/refeicao/cadastrar" class="mt-4">
                     <div class="mb-3">
-                        <label for="nome" class="form-label fs-4">Nome da Refeição</label>
-                        <input type="text" class="form-control" name="nome">
-                    </div>
-                    <div class="mb-3">
                         <label for="tipo" class="form-label fs-4">Tipo da Refeição</label>
-                        <input type="text" class="form-control" name="tipo">
+                        <input type="text" class="form-control" name="tipo" required>
                     </div>
                     <div class="mb-3">
-                        <label for="quantidade" class="form-label fs-4">Quantidade da Refeição</label>
-                        <input type="number" step="any" class="form-control" name="quantidade">
+                        <label for="descricao" class="form-label fs-4">Descrição</label>
+                        <input type="text" class="form-control" name="descricao" required>
                     </div>
                     <div class="mb-3">
-                        <label for="dataRegistro" class="form-label fs-4">Data do Sono</label>
-                        <input type="date" class="form-control" name="dataRegistro">
+                        <label for="calorias" class="form-label fs-4">Calorias</label>
+                        <input type="number" step="any" class="form-control" name="calorias" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="dataRegistro" class="form-label fs-4">Data da Refeição</label>
+                        <input type="date" class="form-control" name="dataRegistro" required>
                     </div>
 
                     <button type="submit" class="btn btn-primary">Cadastrar Refeição</button>

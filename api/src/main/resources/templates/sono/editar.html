@@ -14,15 +14,15 @@
                 <form method="POST" th:action="@{/sono/editar/{id}(id=${sono.id})}" class="mt-4">
                     <div class="mb-3">
                         <label for="horasDormidas" class="form-label fs-4">Horas dormidas</label>
-                        <input type="number" class="form-control" name="horasDormidas" id="horasDormidas" th:name="horasDormidas" th:field="${sono.horasDormidas}">
+                        <input type="number" class="form-control" name="horasDormidas" id="horasDormidas" th:name="horasDormidas" th:field="${sono.horasDormidas}" required>
                     </div>
                     <div class="mb-3">
                         <label for="qualidadeSono" class="form-label fs-4">Qualidade do Sono</label>
-                        <input type="text" class="form-control" name="qualidadeSono" id="qualidadeSono" th:name="qualidadeSono" th:field="${sono.qualidadeSono}">
+                        <input type="text" class="form-control" name="qualidadeSono" id="qualidadeSono" th:name="qualidadeSono" th:field="${sono.qualidadeSono}" required> 
                     </div>
                     <div class="mb-3">
                         <label for="dataRegistro" class="form-label fs-4">Data do Sono</label>
-                        <input type="date" class="form-control" name="dataRegistro" id="dataRegistro" th:name="dataRegistro"\ th:field="${sono.dataRegistro}">
+                        <input type="date" class="form-control" name="dataRegistro" id="dataRegistro" th:name="dataRegistro"\ th:field="${sono.dataRegistro}" required>
                     </div>
 
                     <input type="hidden" th:field="${sono.id}">
