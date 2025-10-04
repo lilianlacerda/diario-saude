@@ -1,15 +1,22 @@
 <!DOCTYPE html>
-<html lang="pt-BR" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" 
-                    layout:decorate="~{layouts/main_layout.html}">
+<html lang="pt-BR" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{layouts/main_layout.html}">
 
 <head>
-    
+
 </head>
 
 <body>
     <div class="container" layout:fragment="content">
         <h1>Início</h1>
         <p>Bem vindo ao nosso site!</p>
+        <div class="text-center">
+            <h2>Em breve iremos inserir os gráficos de desempenho!</h2>
+            <figure class="figure mt-5">
+                <img th:src="@{/img/An.gif}" class="figure-img img-fluid rounded" alt="Gatinho esticando as patinhas">
+            </figure>
+
+        </div>
     </div>
 
 </body>
