@@ -12,39 +12,51 @@ public class SonoService {
 
     private final SonoRepository sonoRepository;
 
-    public SonoService(SonoRepository sonoRepository){
+    public SonoService(SonoRepository sonoRepository) {
         this.sonoRepository = sonoRepository;
     }
 
-    public List<Sono> listarSono(){
+    public List<Sono> listarSono() {
         return sonoRepository.findAll();
     }
 
-    public List<Sono> cadastrarSono(Sono sono){
-        sonoRepository.save(sono);
-        return listarSono();
+    public List<Sono> cadastrarSono(Sono sono) {
+        try {
+            sonoRepository.save(sono);
+            return listarSono();
+
+        } catch (Exception e) {
+            throw new RuntimeException("Erro ao cadastrar sono");
+        }
     }
 
-    public Sono buscarSonoPorId(Long id){
+    public Sono buscarSonoPorId(Long id) {
         return sonoRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Sono não encontrado com o ID: " + id));
     }
 
-    public Sono atualizarSono(Long id, Sono sonoAtualizado){
-        Sono sonoExistente = buscarSonoPorId(id);
+    public Sono atualizarSono(Long id, Sono sonoAtualizado) {
+        try {
+            Sono sonoExistente = buscarSonoPorId(id);
 
-        sonoExistente.setHorasDormidas(sonoAtualizado.getHorasDormidas());
-        sonoExistente.setQualidadeSono(sonoAtualizado.getQualidadeSono());
-        sonoExistente.setDataRegistro(sonoAtualizado.getDataRegistro());
+            sonoExistente.setHorasDormidas(sonoAtualizado.getHorasDormidas());
+            sonoExistente.setQualidadeSono(sonoAtualizado.getQualidadeSono());
+            sonoExistente.setDataRegistro(sonoAtualizado.getDataRegistro());
 
-        return sonoRepository.save(sonoExistente);
+            return sonoRepository.save(sonoExistente);
+
+        } catch (Exception e) {
+            throw new RuntimeException("Erro ao editar sono");
+        }
     }
 
-    public String deletarSono(Long id){
-        if(!sonoRepository.existsById(id)){
-            return "Sono não encontrado com o ID: " + id;
-        }
-        sonoRepository.deleteById(id);
-        return "Sono deletado com sucesso!";
+    public String deletarSono(Long id) {
+        try {
+            sonoRepository.deleteById(id);
+            return "Sono deletado com sucesso!";
+            
+        } catch (Exception e) {
+            throw new RuntimeException("Erro ao excluir sono");
+        }  
     }
 }
